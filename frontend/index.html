@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brio — AI Fitness Coach</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════ SIDEBAR ═══════════════════════════ -->
+<aside>
+
+  <!-- Brio Suggestions -->
+  <div class="section">
+    <div class="section-title">⚡ Brio Suggestions</div>
+    <div class="suggestions-list">
+
+      <div class="suggestion-card">
+        <div class="suggestion-icon" style="background:rgba(239,68,68,0.12); color:var(--red)">🥩</div>
+        <div class="suggestion-text">
+          <strong>Boost your protein today.</strong> You're at 48% of your daily target — add a chicken breast or Greek yogurt to close the gap and support muscle repair after yesterday's run.
+        </div>
+      </div>
+
+      <div class="suggestion-card">
+        <div class="suggestion-icon" style="background:rgba(245,158,11,0.12); color:var(--yellow)">⚡</div>
+        <div class="suggestion-text">
+          <strong>Keep tomorrow easy.</strong> Your HRV (62) is below your baseline of 71 — your body is adapting to this week's 52 km load. A Zone 1-2 run will accelerate recovery.
+        </div>
+      </div>
+
+      <div class="suggestion-card">
+        <div class="suggestion-icon" style="background:rgba(34,197,94,0.12); color:var(--green)">📈</div>
+        <div class="suggestion-text">
+          <strong>Great training week.</strong> TSS is up 12% and your long run hit 18.2 km — right on track for your Boston Qualifier build. Sleep quality at 74% is supporting the load well.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Weekly Stats -->
+  <div class="section">
+    <div class="section-title">This Week</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">Distance</div>
+        <div class="value">52<span class="unit">km</span></div>
+        <div class="delta up">↑ 8% vs last week</div>
+        <div class="sparkline">
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:85%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar active" style="height:100%"></div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Avg HR</div>
+        <div class="value">148<span class="unit">bpm</span></div>
+        <div class="delta down">↑ 3 bpm vs target</div>
+        <div class="sparkline">
+          <div class="bar" style="height:60%"></div>
+          <div class="bar" style="height:75%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar" style="height:90%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar active" style="height:70%"></div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="label">TSS</div>
+        <div class="value">384<span class="unit">pts</span></div>
+        <div class="delta up">↑ 12% vs last week</div>
+        <div class="sparkline">
+          <div class="bar" style="height:45%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:75%"></div>
+          <div class="bar active" style="height:100%"></div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Calories</div>
+        <div class="value">3,240<span class="unit">kcal</span></div>
+        <div class="delta up">Avg 648/run</div>
+        <div class="sparkline">
+          <div class="bar" style="height:50%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar" style="height:85%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar active" style="height:90%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recovery -->
+  <div class="section">
+    <div class="section-title">Recovery</div>
+    <div class="recovery-grid">
+      <div class="recovery-card">
+        <div class="recovery-value" style="color:var(--yellow)">62</div>
+        <div class="recovery-label">HRV</div>
+      </div>
+      <div class="recovery-card">
+        <div class="recovery-value" style="color:var(--green)">74<span class="recovery-unit">%</span></div>
+        <div class="recovery-label">Sleep</div>
+      </div>
+      <div class="recovery-card">
+        <div class="recovery-value" style="color:var(--red)">48<span class="recovery-unit">%</span></div>
+        <div class="recovery-label">Protein</div>
+      </div>
+      <div class="recovery-card">
+        <div class="recovery-value" style="color:var(--green)">81<span class="recovery-unit">%</span></div>
+        <div class="recovery-label">Hydration</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activities -->
+  <div class="section">
+    <div class="section-title">Recent</div>
+    <div class="activity-item">
+      <div class="activity-info">
+        <div class="name">Morning Long Run</div>
+        <div class="meta">Today · 5:42/km</div>
+      </div>
+      <div class="activity-distance">18.2 km</div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-info">
+        <div class="name">Easy Recovery Run</div>
+        <div class="meta">Yesterday · 6:21/km</div>
+      </div>
+      <div class="activity-distance">8.4 km</div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-info">
+        <div class="name">Tempo Intervals</div>
+        <div class="meta">Mon · 4:58/km</div>
+      </div>
+      <div class="activity-distance">12.7 km</div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-info">
+        <div class="name">Base Aerobic Run</div>
+        <div class="meta">Sun · 5:55/km</div>
+      </div>
+      <div class="activity-distance">13.1 km</div>
+    </div>
+  </div>
+
+  <!-- Profile -->
+  <div class="profile-header">
+    <div class="avatar-row">
+      <div class="avatar">YZ</div>
+      <div class="profile-info">
+        <h2>Yi Zhang</h2>
+      </div>
+      <button class="settings-btn" onclick="toggleSettings()" id="settings-btn" aria-label="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="profile-stats">
+      <div class="profile-stat">
+        <span class="val">847</span>
+        <span class="lbl">Kudos</span>
+      </div>
+      <div class="profile-stat">
+        <span class="val">312</span>
+        <span class="lbl">Runs</span>
+      </div>
+      <div class="profile-stat">
+        <span class="val">2,184</span>
+        <span class="lbl">km YTD</span>
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<!-- ═══════════════════════════ MAIN CHAT ═══════════════════════════ -->
+<main>
+  <div id="messages">
+    <div class="welcome" id="welcome">
+<h2>Hey Yi, Ready for exercise today? ⚡</h2>
+      <p>I've loaded your Strava data — 52 km this week, 4 runs, and I can see your protein intake needs attention. Ask me anything about training, recovery, or nutrition.</p>
+    </div>
+  </div>
+
+  <!-- Suggested chips -->
+  <div class="chips-container" id="chips">
+    <div class="chip" onclick="sendChip(this)">📈 How's my training load this week?</div>
+    <div class="chip" onclick="sendChip(this)">🥩 My protein is low — what should I eat?</div>
+    <div class="chip" onclick="sendChip(this)">😴 Is my recovery good enough for tomorrow?</div>
+    <div class="chip" onclick="sendChip(this)">⚡ Explain my HRV score</div>
+    <div class="chip" onclick="sendChip(this)">🏃 Plan my next long run</div>
+    <div class="chip" onclick="sendChip(this)">🎯 Am I on track for my marathon?</div>
+  </div>
+
+  <div class="input-area">
+    <div class="input-row">
+      <textarea
+        id="user-input"
+        rows="1"
+        placeholder="Ask Brio about your training, nutrition, or recovery…"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+      <button id="send-btn" onclick="sendMessage()" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════════════════ SETTINGS MODAL ═══════════════════════════ -->
+<div class="modal-backdrop" id="ds-modal-backdrop" onclick="handleDsBackdropClick(event)">
+  <div class="modal ds-modal settings-modal">
+    <div class="ds-modal-header">
+      <h2>Settings</h2>
+      <button class="ds-close-btn" onclick="closeDsModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="settings-tabs">
+      <button class="settings-tab active" onclick="switchSettingsTab('profile', this)">Profile</button>
+      <button class="settings-tab" onclick="switchSettingsTab('connections', this)">Connections</button>
+    </div>
+
+    <!-- Profile Tab -->
+    <div class="settings-panel" id="settings-panel-profile">
+      <!-- Avatar -->
+      <div class="settings-avatar-row">
+        <div class="settings-avatar" id="settings-avatar">YZ</div>
+        <button class="settings-avatar-btn">Change photo</button>
+      </div>
+
+      <!-- Username -->
+      <div class="settings-field">
+        <label>Username</label>
+        <input type="text" value="Yi Zhang" placeholder="Your name" />
+      </div>
+
+      <!-- Email -->
+      <div class="settings-field">
+        <label>Email address</label>
+        <input type="email" value="yi@example.com" placeholder="you@example.com" />
+      </div>
+
+      <!-- Password -->
+      <div class="settings-field">
+        <label>Password</label>
+        <input type="password" value="••••••••" placeholder="New password" />
+      </div>
+
+      <button class="settings-save-btn">Save changes</button>
+
+      <div class="settings-divider"></div>
+
+      <!-- Delete account -->
+      <div class="settings-danger-zone">
+        <div class="settings-danger-info">
+          <strong>Delete account</strong>
+          <p>Permanently remove your account and all associated data. This cannot be undone.</p>
+        </div>
+        <button class="settings-delete-btn">Delete account</button>
+      </div>
+    </div>
+
+    <!-- Connections Tab -->
+    <div class="settings-panel hidden" id="settings-panel-connections">
+      <p class="ds-subtitle">Connect your fitness platforms so Brio can personalise your training and nutrition advice with real data.</p>
+      <div class="ds-card connected" id="ds-card-strava">
+        <div class="ds-logo" style="background:linear-gradient(135deg,rgba(0,201,167,0.13),rgba(0,179,150,0.26))">🟢</div>
+        <div class="ds-info">
+          <div class="ds-name">Strava</div>
+          <div class="ds-desc">Activities, routes, pace &amp; heart rate zones</div>
+          <div class="ds-status is-connected" id="ds-status-strava">✓ Connected · Synced 2m ago</div>
+        </div>
+        <button class="ds-action-btn disconnect" id="ds-btn-strava" onclick="dsToggle('strava')">
+          <span class="btn-spinner"></span>
+          <span class="btn-text">Disconnect</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ AUTH MODAL ═══════════════════════════ -->
+<div class="modal-backdrop" id="auth-modal" onclick="handleBackdropClick(event)">
+  <div class="modal">
+    <div class="modal-logo" id="modal-logo"></div>
+    <h2 id="modal-title"></h2>
+    <p class="subtitle" id="modal-subtitle"></p>
+    <div class="modal-permissions" id="modal-permissions"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeAuthModal()">Cancel</button>
+      <button class="btn-connect" id="modal-connect-btn" onclick="confirmConnect()">
+        <div class="spinner"></div>
+        <span class="btn-label" id="modal-btn-label"></span>
+      </button>
+    </div>
+    <p class="modal-legal" id="modal-legal"></p>
+  </div>
+</div>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>
