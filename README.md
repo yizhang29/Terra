@@ -1,4 +1,4 @@
-# Brio — AI Fitness & Nutrition Coach
+# Terra — AI Fitness & Nutrition Coach
 
 Your personal AI coach that analyzes your training data and gives
 personalized fitness and nutrition advice. Powered by Gemma 4
@@ -8,7 +8,7 @@ running locally via LM Studio — free, private, no cloud required.
 
 ## What it does
 
-- Chat with Pace, your AI fitness and nutrition coach
+- Chat with Terra, your AI fitness and nutrition coach
 - Analyzes your Strava activities, recovery, and nutrition
 - Streams responses word by word in real time
 - Runs entirely on your machine — your data stays private
@@ -84,15 +84,15 @@ Leave these blank for now (needed only for Strava integration):
 node backend/server.js
 
 You should see:
-  Brio running on http://localhost:3000
+  Terra running on http://localhost:3000
   LLM: LM Studio → google/gemma-4-e4b
 
-### 7. Open Brio
+### 7. Open Terra
 
 Open your browser and go to:
   http://localhost:3000
 
-Type a message or click a suggestion chip to start chatting with Pace.
+Type a message or click a suggestion chip to start chatting with Terra.
 
 ---
 
@@ -132,7 +132,7 @@ brio/
 │       └── auth.js            Session auth middleware
 ├── frontend/
 │   ├── index.html             Main UI
-│   ├── style.css              Brio design system
+│   ├── style.css              Terra design system
 │   └── app.js                 Chat logic and streaming
 ├── .env.example               Environment variable template
 └── README.md                  This file
@@ -158,7 +158,7 @@ The only thing that does not transfer between machines is the
 
 - [x] Local LLM via LM Studio (Gemma 4)
 - [x] Streaming chat responses
-- [x] Fitness and nutrition coaching persona (Pace)
+- [x] Fitness and nutrition coaching persona (Terra)
 - [x] Simulated Strava activity context
 - [ ] Real Strava OAuth integration
 - [ ] Supabase user database

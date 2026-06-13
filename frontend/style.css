@@ -1,4 +1,4 @@
-/* ── style.css — Brio AI Fitness Coach ──────────────────────────────────── */
+/* ── style.css — Terra AI Fitness Coach ─────────────────────────────────── */
 
 :root {
   --bg:       #0D1F2D;
@@ -29,6 +29,34 @@ body {
   overflow: hidden;
   padding: 12px;
   gap: 12px;
+}
+
+/* ── Brand row ── */
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 16px 12px;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+}
+
+.brand-name {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.brand-tagline {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
 }
 
 /* ── Sidebar ── */
@@ -156,6 +184,16 @@ aside::-webkit-scrollbar-thumb:hover {
   letter-spacing: 1px;
   color: var(--muted);
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-title-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 
 /* Weekly stats grid */
@@ -402,7 +440,7 @@ header {
   gap: 12px;
 }
 
-.brio-logo {
+.terra-logo {
   width: 40px;
   height: 40px;
   border-radius: 12px;
@@ -499,14 +537,15 @@ header {
 }
 
 .msg.assistant .bubble {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #0a2e1e;
+  border: 1px solid #0f4530;
   border-top-left-radius: 4px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  color: #e0f5ef;
 }
 
 .msg.user .bubble {
-  background: var(--accent);
+  background: #176644;
   color: white;
   border-top-right-radius: 4px;
 }
@@ -639,6 +678,24 @@ header {
 
 #send-btn svg { width: 18px; height: 18px; stroke: currentColor; }
 
+.input-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+  color: var(--muted);
+  transition: color 0.15s, transform 0.1s;
+}
+
+.input-action-btn:hover { color: var(--text); }
+.input-action-btn:active { transform: scale(0.95); }
+.input-action-btn.recording { color: var(--red); }
+.input-action-btn svg { width: 17px; height: 17px; }
+
 /* Welcome screen */
 .welcome {
   flex: 1;
@@ -651,16 +708,22 @@ header {
 }
 
 .welcome-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--accent) 0%, #00B396 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  margin-bottom: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 13px;
+  margin-bottom: 12px;
   box-shadow: 0 0 40px rgba(0,201,167,0.25);
+}
+
+.heading-icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  border-radius: 8px;
+  margin-left: 4px;
+  position: relative;
+  top: -2px;
+  display: inline-block;
 }
 
 .welcome h2 {
@@ -850,69 +913,14 @@ header {
 /* ── Settings Modal ── */
 .settings-modal { width: 460px; max-width: calc(100vw - 32px); }
 
-.settings-tabs {
-  display: flex;
-  gap: 4px;
-  margin: 12px 0 20px;
-  background: var(--surface2);
-  border-radius: 10px;
-  padding: 4px;
-}
-
-.settings-tab {
-  flex: 1;
-  padding: 7px 0;
-  border: none;
-  background: none;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-}
-
-.settings-tab.active {
-  background: var(--surface);
-  color: var(--text);
-}
-
-.settings-panel.hidden { display: none; }
-
-.settings-avatar-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-
-.settings-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #00B396);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
+.settings-section-label {
+  font-size: 11px;
   font-weight: 700;
-  color: #0a1f2e;
-  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin-bottom: 12px;
 }
-
-.settings-avatar-btn {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 8px;
-  padding: 7px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-
-.settings-avatar-btn:hover { border-color: var(--accent); }
 
 .settings-field {
   display: flex;
@@ -1158,7 +1166,7 @@ header {
 /* Connected state badge */
 .source-info .status.connected { color: var(--green); }
 
-/* ── Brio Suggestions ── */
+/* ── Terra Suggestions ── */
 .suggestions-list {
   display: flex;
   flex-direction: column;
@@ -1198,6 +1206,37 @@ header {
   font-weight: 600;
   display: block;
   margin-bottom: 2px;
+}
+
+/* ── Chat header ── */
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.chat-header-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.chat-header-text {
+  display: flex;
+  flex-direction: column;
+}
+.chat-header-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.1;
+}
+.chat-header-sub {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 1px;
 }
 
 /* Responsive */

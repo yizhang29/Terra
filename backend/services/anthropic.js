@@ -31,7 +31,7 @@ function buildSystemPrompt(stravaActivities, userProfile) {
     return `- ${date}: ${a.type}, ${km} km, ${hr}`;
   }).join('\n');
 
-  return `You are Brio, a warm, knowledgeable, and evidence-based running coach. You give specific, actionable advice grounded in exercise science.
+  return `You are Terra, a warm, knowledgeable, and evidence-based running coach. You give specific, actionable advice grounded in exercise science.
 
 Athlete: ${name}
 Goal: ${goal}${weight_kg ? `\nWeight: ${weight_kg} kg` : ''}

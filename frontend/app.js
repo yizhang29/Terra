@@ -7,11 +7,11 @@ style.textContent = `
     border-radius: 50%;
     background: #5A7A8A;
     margin: 0 2px;
-    animation: brio-bounce 1s infinite;
+    animation: terra-bounce 1s infinite;
   }
   .dot:nth-child(2) { animation-delay: 0.15s; }
   .dot:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes brio-bounce {
+  @keyframes terra-bounce {
     0%, 80%, 100% { transform: translateY(0); }
     40% { transform: translateY(-6px); }
   }
@@ -22,19 +22,34 @@ style.textContent = `
     font-size: 14px;
     padding: 10px 14px;
     border-radius: 4px 18px 18px 18px;
-    background: white;
-    border: 1px solid #C2EDE4;
-    color: #0D1F2D;
+    background: #0a2e1e;
+    border: 1px solid #0f4530;
+    color: #e0f5ef;
   }
   .user-message {
     margin-left: auto;
-    background: #00C9A7;
+    background: #176644;
     color: white;
     border: none;
     border-radius: 18px 18px 4px 18px;
   }
-  .pace-message {
+  .terra-message {
     margin-right: auto;
+  }
+  .terra-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .terra-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    flex-shrink: 0;
+  }
+  .terra-row .message {
+    margin-bottom: 0;
   }
 `
 document.head.appendChild(style)
@@ -63,24 +78,27 @@ function appendUserMessage(text) {
   scrollToBottom()
 }
 
-function appendPaceMessage(id) {
+function appendTerraMessage(id) {
   const msgs = document.getElementById('messages')
+  const row = document.createElement('div')
+  row.className = 'terra-row'
   const div = document.createElement('div')
-  div.className = 'message pace-message'
+  div.className = 'message terra-message'
   if (id) div.id = id
-  msgs.appendChild(div)
+  row.appendChild(div)
+  msgs.appendChild(row)
   scrollToBottom()
   return div
 }
 
 function showTyping() {
-  const el = appendPaceMessage('typing-indicator')
+  const el = appendTerraMessage('typing-indicator')
   el.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>'
 }
 
 function removeTyping() {
   const el = document.getElementById('typing-indicator')
-  if (el) el.remove()
+  if (el) (el.closest('.terra-row') || el).remove()
 }
 
 async function sendMessage() {
@@ -114,7 +132,7 @@ async function sendMessage() {
     if (!response.ok) throw new Error('Server error')
 
     removeTyping()
-    const msgEl = appendPaceMessage('current-response')
+    const msgEl = appendTerraMessage('current-response')
 
     const reader = response.body.getReader()
     const decoder = new TextDecoder()
@@ -156,8 +174,8 @@ async function sendMessage() {
 
   } catch (err) {
     removeTyping()
-    const errEl = appendPaceMessage('error-msg')
-    errEl.textContent = 'Sorry, I could not reach Pace. Make sure the server is running.'
+    const errEl = appendTerraMessage('error-msg')
+    errEl.textContent = 'Sorry, I could not reach Terra. Make sure the server is running.'
   }
 
   isLoading = false
@@ -175,6 +193,7 @@ window.handleKey = (e) => {
 window.autoResize = (el) => {
   el.style.height = 'auto'
   el.style.height = Math.min(el.scrollHeight, 120) + 'px'
+  document.getElementById('send-btn').disabled = !el.value.trim()
 }
 window.sendChip = (el) => {
   const input = document.getElementById('user-input')
@@ -182,10 +201,12 @@ window.sendChip = (el) => {
   sendMessage()
 }
 window.toggleSettings = () => {
-  document.getElementById('ds-modal-backdrop').classList.toggle('active')
+  document.getElementById('ds-modal-backdrop').classList.toggle('open')
+  document.getElementById('settings-btn').classList.toggle('active')
 }
 window.closeDsModal = () => {
-  document.getElementById('ds-modal-backdrop').classList.remove('active')
+  document.getElementById('ds-modal-backdrop').classList.remove('open')
+  document.getElementById('settings-btn').classList.remove('active')
 }
 window.handleDsBackdropClick = (e) => {
   if (e.target.id === 'ds-modal-backdrop') window.closeDsModal()
@@ -204,3 +225,46 @@ window.switchSettingsTab = (tab, btn) => {
 }
 window.dsToggle = (platform) => console.log('Toggle:', platform)
 window.confirmConnect = () => console.log('Confirm connect')
+
+window.handleVoiceInput = async () => {
+  if (!navigator.mediaDevices?.getUserMedia) {
+    alert('Voice input requires a secure connection (HTTPS or localhost). Please access the app via the server rather than opening the file directly.');
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream.getTracks().forEach(t => t.stop());
+    const btn = document.getElementById('voice-btn');
+    btn.classList.toggle('recording');
+  } catch (err) {
+    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+      alert('Microphone access was denied. Please allow microphone access in your browser settings.');
+    } else if (err.name === 'NotFoundError') {
+      alert('No microphone found. Please connect a microphone and try again.');
+    } else {
+      alert('Could not access microphone: ' + err.message);
+    }
+  }
+}
+
+window.handleCameraInput = async () => {
+  if (!navigator.mediaDevices?.getUserMedia) {
+    alert('Camera input requires a secure connection (HTTPS or localhost). Please access the app via the server rather than opening the file directly.');
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    stream.getTracks().forEach(t => t.stop());
+    alert('Camera access granted. Camera input coming soon.');
+  } catch (err) {
+    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+      alert('Camera access was denied. Please allow camera access in your browser settings.');
+    } else if (err.name === 'NotFoundError') {
+      alert('No camera found. Please connect a camera and try again.');
+    } else {
+      alert('Could not access camera: ' + err.message);
+    }
+  }
+}
+
+document.getElementById('send-btn').disabled = true;

@@ -18,7 +18,7 @@ app.use(cors({
 app.use(express.json())
 
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'brio-secret',
+  secret: process.env.SESSION_SECRET || 'terra-secret',
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false, maxAge: 7 * 24 * 60 * 60 * 1000 }
@@ -31,7 +31,7 @@ app.use('/api/activities', activitiesRoutes)
 app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
-    name: 'Brio',
+    name: 'Terra',
     provider: process.env.USE_LOCAL_LLM === 'true'
       ? 'LM Studio (local)'
       : 'Anthropic (cloud)',
@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-  console.log(`Brio running on http://localhost:${PORT}`)
+  console.log(`Terra running on http://localhost:${PORT}`)
   console.log(`LLM: ${process.env.USE_LOCAL_LLM === 'true'
     ? 'LM Studio → ' + process.env.LM_STUDIO_MODEL
     : 'Anthropic cloud'}`)

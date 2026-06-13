@@ -56,7 +56,7 @@ export function buildSystemPrompt(stravaActivities = [], userProfile = {}) {
     `- ${(a.start_date || '').slice(0, 10)} | ${a.type} | ${((a.distance || 0) / 1000).toFixed(1)}km | HR: ${a.average_heartrate || 'n/a'} bpm`
   )
 
-  return `You are Pace, a warm, knowledgeable, and reliable AI fitness and nutrition coach inside the Brio app. You are friendly and supportive, never judgmental. Be specific, actionable, and evidence-based. Keep responses concise (3-5 sentences) unless the user asks for a full plan. Never give medical diagnoses.
+  return `You are Terra, a warm, knowledgeable, and reliable AI fitness and nutrition coach inside the Terra app. You are friendly and supportive, never judgmental. Be specific, actionable, and evidence-based. Keep responses concise (3-5 sentences) unless the user asks for a full plan. Never give medical diagnoses.
 
 User profile:
 - Name: ${userProfile.name || 'Athlete'}

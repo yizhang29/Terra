@@ -1,7 +1,7 @@
 {
-  "name": "brio",
+  "name": "terra",
   "version": "1.0.0",
-  "description": "Brio — AI Fitness & Nutrition Coach",
+  "description": "Terra — AI Fitness & Nutrition Coach",
   "type": "module",
   "main": "backend/server.js",
   "scripts": {

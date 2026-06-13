@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Brio — AI Fitness Coach</title>
+<title>Terra — AI Fitness Coach</title>
+<link rel="icon" type="image/svg+xml" href="terra-icon.svg" />
+<link rel="apple-touch-icon" href="terra-icon.svg" />
+<meta name="theme-color" content="#F6843C" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,9 +14,10 @@
 <!-- ═══════════════════════════ SIDEBAR ═══════════════════════════ -->
 <aside>
 
-  <!-- Brio Suggestions -->
+
+  <!-- Terra Suggestions -->
   <div class="section">
-    <div class="section-title">⚡ Brio Suggestions</div>
+    <div class="section-title"><svg class="section-title-icon" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="si"><rect width="150" height="150" rx="34"/></clipPath></defs><g clip-path="url(#si)"><rect width="150" height="150" fill="#FBD38D"/><circle cx="75" cy="84" r="34" fill="#F6843C"/><circle cx="75" cy="84" r="34" fill="none" stroke="#FFF7ED" stroke-width="5.5"/><path d="M0,84 Q37,72 75,84 T150,84 L150,150 L0,150 Z" fill="#3A9468"/><path d="M0,116 Q37,106 75,116 T150,116 L150,150 L0,150 Z" fill="#276749"/></g></svg> Terra Suggestions</div>
     <div class="suggestions-list">
 
       <div class="suggestion-card">
@@ -191,7 +195,7 @@
 <main>
   <div id="messages">
     <div class="welcome" id="welcome">
-<h2>Hey Yi, Ready for exercise today? ⚡</h2>
+<h2>Hey Yi, Ready for exercise today? <svg class="heading-icon" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="hi"><rect width="150" height="150" rx="34"/></clipPath></defs><g clip-path="url(#hi)"><rect width="150" height="150" fill="#FBD38D"/><circle cx="75" cy="84" r="34" fill="#F6843C"/><circle cx="75" cy="84" r="34" fill="none" stroke="#FFF7ED" stroke-width="5.5"/><path d="M0,84 Q37,72 75,84 T150,84 L150,150 L0,150 Z" fill="#3A9468"/><path d="M0,116 Q37,106 75,116 T150,116 L150,150 L0,150 Z" fill="#276749"/></g></svg></h2>
       <p>I've loaded your Strava data — 52 km this week, 4 runs, and I can see your protein intake needs attention. Ask me anything about training, recovery, or nutrition.</p>
     </div>
   </div>
@@ -211,10 +215,24 @@
       <textarea
         id="user-input"
         rows="1"
-        placeholder="Ask Brio about your training, nutrition, or recovery…"
+        placeholder="Ask Terra about your training, nutrition, or recovery…"
         onkeydown="handleKey(event)"
         oninput="autoResize(this)"
       ></textarea>
+      <button class="input-action-btn" id="voice-btn" onclick="handleVoiceInput()" aria-label="Voice input">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="2" width="6" height="11" rx="3"></rect>
+          <path d="M19 10a7 7 0 0 1-14 0"></path>
+          <line x1="12" y1="19" x2="12" y2="22"></line>
+          <line x1="8" y1="22" x2="16" y2="22"></line>
+        </svg>
+      </button>
+      <button class="input-action-btn" id="camera-btn" onclick="handleCameraInput()" aria-label="Camera input">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+          <circle cx="12" cy="13" r="4"></circle>
+        </svg>
+      </button>
       <button id="send-btn" onclick="sendMessage()" aria-label="Send">
         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -238,67 +256,48 @@
       </button>
     </div>
 
-    <!-- Tabs -->
-    <div class="settings-tabs">
-      <button class="settings-tab active" onclick="switchSettingsTab('profile', this)">Profile</button>
-      <button class="settings-tab" onclick="switchSettingsTab('connections', this)">Connections</button>
+    <!-- Strava Connection -->
+    <div class="settings-section-label">Connected accounts</div>
+    <div class="ds-card connected" id="ds-card-strava">
+      <div class="ds-logo" style="background:linear-gradient(135deg,rgba(0,201,167,0.13),rgba(0,179,150,0.26))">🟢</div>
+      <div class="ds-info">
+        <div class="ds-name">Strava</div>
+        <div class="ds-desc">Activities, routes, pace &amp; heart rate zones</div>
+        <div class="ds-status is-connected" id="ds-status-strava">✓ Connected · Synced 2m ago</div>
+      </div>
+      <button class="ds-action-btn disconnect" id="ds-btn-strava" onclick="dsToggle('strava')">
+        <span class="btn-spinner"></span>
+        <span class="btn-text">Disconnect</span>
+      </button>
     </div>
 
-    <!-- Profile Tab -->
-    <div class="settings-panel" id="settings-panel-profile">
-      <!-- Avatar -->
-      <div class="settings-avatar-row">
-        <div class="settings-avatar" id="settings-avatar">YZ</div>
-        <button class="settings-avatar-btn">Change photo</button>
-      </div>
+    <div class="settings-divider"></div>
 
-      <!-- Username -->
-      <div class="settings-field">
-        <label>Username</label>
-        <input type="text" value="Yi Zhang" placeholder="Your name" />
-      </div>
-
-      <!-- Email -->
-      <div class="settings-field">
-        <label>Email address</label>
-        <input type="email" value="yi@example.com" placeholder="you@example.com" />
-      </div>
-
-      <!-- Password -->
-      <div class="settings-field">
-        <label>Password</label>
-        <input type="password" value="••••••••" placeholder="New password" />
-      </div>
-
-      <button class="settings-save-btn">Save changes</button>
-
-      <div class="settings-divider"></div>
-
-      <!-- Delete account -->
-      <div class="settings-danger-zone">
-        <div class="settings-danger-info">
-          <strong>Delete account</strong>
-          <p>Permanently remove your account and all associated data. This cannot be undone.</p>
-        </div>
-        <button class="settings-delete-btn">Delete account</button>
-      </div>
+    <!-- Account -->
+    <div class="settings-section-label">Account</div>
+    <div class="settings-field">
+      <label>Username</label>
+      <input type="text" value="Yi Zhang" placeholder="Your name" />
     </div>
+    <div class="settings-field">
+      <label>New password</label>
+      <input type="password" placeholder="Enter new password" />
+    </div>
+    <div class="settings-field">
+      <label>Confirm password</label>
+      <input type="password" placeholder="Confirm new password" />
+    </div>
+    <button class="settings-save-btn">Save changes</button>
 
-    <!-- Connections Tab -->
-    <div class="settings-panel hidden" id="settings-panel-connections">
-      <p class="ds-subtitle">Connect your fitness platforms so Brio can personalise your training and nutrition advice with real data.</p>
-      <div class="ds-card connected" id="ds-card-strava">
-        <div class="ds-logo" style="background:linear-gradient(135deg,rgba(0,201,167,0.13),rgba(0,179,150,0.26))">🟢</div>
-        <div class="ds-info">
-          <div class="ds-name">Strava</div>
-          <div class="ds-desc">Activities, routes, pace &amp; heart rate zones</div>
-          <div class="ds-status is-connected" id="ds-status-strava">✓ Connected · Synced 2m ago</div>
-        </div>
-        <button class="ds-action-btn disconnect" id="ds-btn-strava" onclick="dsToggle('strava')">
-          <span class="btn-spinner"></span>
-          <span class="btn-text">Disconnect</span>
-        </button>
+    <div class="settings-divider"></div>
+
+    <!-- Deactivate -->
+    <div class="settings-danger-zone">
+      <div class="settings-danger-info">
+        <strong>Deactivate account</strong>
+        <p>Your data will be preserved but you won't be able to log in until reactivated.</p>
       </div>
+      <button class="settings-delete-btn">Deactivate</button>
     </div>
   </div>
 </div>

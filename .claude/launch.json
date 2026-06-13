@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "brio-website",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "C:\\brio-website"],
+      "port": 3457,
+      "autoPort": true
+    },
+    {
+      "name": "terra-app",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["backend/server.js"],
+      "port": 3000
+    }
+  ]
+}
