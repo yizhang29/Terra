@@ -22,14 +22,14 @@ style.textContent = `
     font-size: 14px;
     padding: 10px 14px;
     border-radius: 4px 18px 18px 18px;
-    background: #0a2e1e;
-    border: 1px solid #0f4530;
-    color: #e0f5ef;
+    background: #0d3b32;
+    border: 1px solid #1a5c4e;
+    color: #c0ddd8;
   }
   .user-message {
     margin-left: auto;
-    background: #176644;
-    color: white;
+    background: #1e7a65;
+    color: #e8f7f4;
     border: none;
     border-radius: 18px 18px 4px 18px;
   }
@@ -179,8 +179,9 @@ async function sendMessage() {
   }
 
   isLoading = false
-  document.getElementById('send-btn').disabled = false
-  document.getElementById('user-input').focus()
+  const inputEl = document.getElementById('user-input')
+  document.getElementById('send-btn').disabled = inputEl.value.trim().length === 0
+  inputEl.focus()
 }
 
 window.sendMessage = sendMessage
@@ -193,7 +194,7 @@ window.handleKey = (e) => {
 window.autoResize = (el) => {
   el.style.height = 'auto'
   el.style.height = Math.min(el.scrollHeight, 120) + 'px'
-  document.getElementById('send-btn').disabled = !el.value.trim()
+  document.getElementById('send-btn').disabled = el.value.trim().length === 0
 }
 window.sendChip = (el) => {
   const input = document.getElementById('user-input')
